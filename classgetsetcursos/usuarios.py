@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 class Usuarios:
-    def __init__(self, id_usuario, nombre, apellido, dni, direccion, fecha_nacimiento, localidad, codigo_postal, provincia, telefono_celular, email, clave_acceso, estado_usuario):
+    def __init__(self, id_usuario, nombre, apellido, dni, direccion, fecha_nacimiento, localidad, codigo_postal, provincia, telefono_celular, email, clave_acceso, estado_usuario,rol):
         self.id_usuario = id_usuario
         self.nombre = nombre
         self.apellido = apellido
@@ -17,6 +17,7 @@ class Usuarios:
         self.clave_acceso = clave_acceso
         self.estado_usuario = estado_usuario
         self.verificado = False
+        self.rol = rol
 
     # Getters
     def get_id_usuario(self):
@@ -132,4 +133,4 @@ class Usuarios:
         return "@" in self.email and "." in self.email
 
     def __str__(self):
-        return f"Usuario: {self.nombre} {self.apellido}, DNI: {self.dni}, Estado: {self.estado_usuario}, Verificado: {self.verificado}"
+        return f"Usuario: {self.nombre} {self.apellido}, DNI: {self.dni}, Rol: {self.rol}, Estado: {self.estado_usuario}, Verificado: {self.verificado}"
