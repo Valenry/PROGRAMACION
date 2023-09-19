@@ -1,8 +1,5 @@
-import smtplib
-from email.mime.text import MIMEText
-
 class Usuarios:
-    def __init__(self, id_usuario, nombre, apellido, dni, direccion, fecha_nacimiento, localidad, codigo_postal, provincia, telefono_celular, email, clave_acceso, estado_usuario,rol):
+    def __init__(self, id_usuario, nombre, apellido, dni, direccion, fecha_nacimiento, localidad, codigo_postal, provincia, telefono_celular, email, clave_acceso, estado_usuario, rol):
         self.id_usuario = id_usuario
         self.nombre = nombre
         self.apellido = apellido
@@ -62,6 +59,9 @@ class Usuarios:
     def get_verificado(self):
         return self.verificado
 
+    def get_rol(self):
+        return self.rol
+
     # Setters
     def set_id_usuario(self, id_usuario):
         self.id_usuario = id_usuario
@@ -102,6 +102,12 @@ class Usuarios:
     def set_estado_usuario(self, estado_usuario):
         self.estado_usuario = estado_usuario
 
+    def set_verificado(self, verificado):
+        self.verificado = verificado
+
+    def set_rol(self, rol):
+        self.rol = rol
+
     # Método para enviar correo de verificación
     def enviar_correo_verificacion(self):
         try:
@@ -126,11 +132,31 @@ class Usuarios:
             print(f"Error al enviar el correo de verificación: {str(e)}")
             return False
 
-    # Método para verificar si el correo es válido (puedes personalizar esta función)
+    # Método para verificar si el correo es válido
     def email_valido(self):
-        # Aquí puedes implementar una validación más robusta del correo electrónico
-        # Para esta demostración, simplemente se considerará válido si contiene un "@" y un "."
+        # Implementa aquí tu lógica de validación de correo electrónico
+        # Por ejemplo, puedes verificar si el correo contiene un "@" y un "."
         return "@" in self.email and "." in self.email
 
     def __str__(self):
         return f"Usuario: {self.nombre} {self.apellido}, DNI: {self.dni}, Rol: {self.rol}, Estado: {self.estado_usuario}, Verificado: {self.verificado}"
+
+# Instancia de ejemplo
+usuario = Usuarios(
+    id_usuario=1,
+    nombre="Valen",
+    apellido="Ry",
+    dni="12345678",
+    direccion="Chile342",
+    fecha_nacimiento="1982-05-21",
+    localidad="Cordoba",
+    codigo_postal="5000",
+    provincia="Cba",
+    telefono_celular="3513513513",
+    email="valen@example.com",
+    clave_acceso="password",
+    estado_usuario="Activo",
+    rol="Usuario Final"
+)
+
+print(usuario)
